@@ -20,7 +20,7 @@
 			<br><br>
 			
 			<div ng-show="tiny">
-				<a href="{{tiny}}">{{tiny}}</a>
+				<a href="{{getHost}}{{tiny}}">{{getHost}}{{tiny}}</a>
 			</div>
 		</div>
 
@@ -37,8 +37,8 @@
 						<th>Tiny</th>
 					</tr>
 					<tr ng-repeat="url in urlList">
-						<td><a href="{{}}url.original">{{url.original}}</a></td>
-						<td><a href="{{apiHost}}u/{{url.short}}">{{apiHost}}u/{{url.short}}</a></td>
+						<td><a href="{{url.original}}">{{url.original}}</a></td>
+						<td><a href="{{apiHost}}{{url.short}}">{{getHost}}{{url.short}}</a></td>
 					</tr>
 				</table>
 			</div>

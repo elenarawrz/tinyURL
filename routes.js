@@ -13,5 +13,9 @@ module.exports = {
 		app.post('/', function (req, res) {
 			tinyURL.create(req.body, res);
 		});
+
+		app.get('/get/:tinyURL', function (req, res) {
+			tinyURL.redirect(req.params.tinyURL, res);
+		})
 	}
 }

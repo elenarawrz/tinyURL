@@ -1,11 +1,12 @@
 var app = angular.module('TinyURL', []);
 
 var errorFunction = function (err) {
-	alert(err);
+	alert(JSON.stringify(err));
 };
 
 app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
 	$scope.apiHost = 'http://localhost:8000/';
+	$scope.getHost = $scope.apiHost + 'get/';
 	$scope.tiny = '';
 
 	$scope.shrink = function () {
@@ -13,7 +14,14 @@ app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
 
 		$http.post($scope.apiHost, { url: $scope.original}).then(
 			function (res) {
-				$scope.tiny = $scope.apiHost + 'u/' + res.data.tinyURL;
+				$scope.tiny = res.data.tinyURL;
+			}, errorFunction);
+	};
+
+	$scope.redirect = function (url) {
+		$http.get($scope.apiHost + 'get/' + url).then(
+			function (res) {
+				debugger;
 			}, errorFunction);
 	};
 
