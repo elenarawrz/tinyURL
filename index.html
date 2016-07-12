@@ -12,15 +12,16 @@
 		<div class="ui segment" style="width:80%; margin:20 auto;">
 			<h1 class="ui horizontal divider header">TinyURL</h1>
 
-			<button class="ui button" ng-click="showList()">Existing URLs</button>
-			<br><br>
-
-			<input type="text" placeholder="Original URL" ng-model="original"></input>
-			<button class="ui button" ng-click="shrink()">Shrink!</button>
+			<button class="ui tiny secondary basic right floated button" ng-click="showList()">Existing URLs</button>
+			<br><br><br>
+			<div class="ui fluid action input">
+				<input type="text" placeholder="Original URL" ng-model="original"></input>
+				<button class="ui button" ng-click="shrink()">Shrink!</button>
+			</div>
 			<br><br>
 			
 			<div ng-show="tiny">
-				<a href="{{getHost}}{{tiny}}">{{getHost}}{{tiny}}</a>
+				<a href="{{tiny}}">{{tiny}}</a>
 			</div>
 		</div>
 
@@ -28,7 +29,7 @@
 		<div class="ui modal">
 			<i class="close icon"></i>
 			<div class="header">
-				URL List
+				Existing URLs
 			</div>
 			<div class="content">
 				<table class="ui padded table">
@@ -38,7 +39,7 @@
 					</tr>
 					<tr ng-repeat="url in urlList">
 						<td><a href="{{url.original}}">{{url.original}}</a></td>
-						<td><a href="{{apiHost}}{{url.short}}">{{getHost}}{{url.short}}</a></td>
+						<td><a href="{{getHost}}{{url.short}}">{{getHost}}{{url.short}}</a></td>
 					</tr>
 				</table>
 			</div>

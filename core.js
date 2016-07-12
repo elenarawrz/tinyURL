@@ -14,7 +14,7 @@ app.controller('MainController', ['$scope', '$http', function ($scope, $http) {
 
 		$http.post($scope.apiHost, { url: $scope.original}).then(
 			function (res) {
-				$scope.tiny = res.data.tinyURL;
+				$scope.tiny = $scope.getHost + res.data.tinyURL;
 			}, errorFunction);
 	};
 
