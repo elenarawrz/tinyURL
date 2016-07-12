@@ -1,0 +1,27 @@
+{
+  "name": "tinyurl",
+  "version": "1.0.0",
+  "description": "url shortener service",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elenarawrz/tinyURL.git"
+  },
+  "keywords": [
+    "tinyurl"
+  ],
+  "author": "Elena Valle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elenarawrz/tinyURL/issues"
+  },
+  "homepage": "https://github.com/elenarawrz/tinyURL#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1"
+  }
+}
