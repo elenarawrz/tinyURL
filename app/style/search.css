@@ -2,5 +2,5 @@
     background-color: #cfc;
 }
 :local(.redButton) {
-  background: red;
+  background: blue;
 }

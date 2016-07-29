@@ -29,7 +29,7 @@ var config = {
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader",
+                loader: "style-loader!css-loader?modules",
                 include: PATHS.app + '/style'
             }
         ]
