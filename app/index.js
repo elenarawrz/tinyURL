@@ -2,9 +2,10 @@ import React from 'react';
 /*import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-    <div>ho-o-lalalala</div>,
-    document.getElementById('app')
+  <div>ho-o-lalalala</div>,
+  document.body
 );*/
+
 
 var style = require('./style/main.css');
 

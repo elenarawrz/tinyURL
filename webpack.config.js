@@ -7,37 +7,48 @@ const PATHS = {
 };
 
 var config = {
-    entry: {
-        app: PATHS.app
-    },
-    output: {
-        path: PATHS.build,
-        filename: '[name].js'
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-    plugins: [
-        new HtmlWebpackPlugin({ title: 'TinyURL' })
-    ],
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loader: "babel-loader",
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                loader: "style-loader!css-loader?modules",
-                include: PATHS.app + '/style'
-            }
-        ]
-    }
+  entry: {
+    app: PATHS.app
+  },
+  output: {
+    path: PATHS.build,
+    filename: '[name].js'
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ title: 'TinyURL' })
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/
+      }
+    ]
+  }
 };
 
-if (process.env.npm_lifecycle_event !== 'build') {
-    config = require('webpack-merge')(config, require('./webpack/dev'));
-}
-
+config = require('webpack-merge')(
+  config,
+  process.env.npm_lifecycle_event !== 'build'
+    ? require('./webpack/dev')({
+        cssPaths: PATHS.app + '/style'
+      })
+    : require('./webpack/prod')({
+        define: {
+          envVar: 'process.env.NODE_ENV',
+          envVal: 'production'
+        },
+        commons: {
+          name: 'vendor',
+          entries: ['react']
+        },
+        buildPath: PATHS.build,
+        cssPaths: PATHS.app + '/style'
+      })
+);
+//console.log(require('prettyjson').render(config));
 module.exports = config;
