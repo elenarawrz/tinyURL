@@ -5,13 +5,14 @@ function TinyURL (argument) {
 		var tiny = '',
 			tinyLength = 6,
 			chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
-			charsLength = chars.length;
+			charsLength = chars.length,
+			isRepeated = false;
 
 		do {
 			for (var i = 0; i < tinyLength; i++) {
 				tiny += chars[Math.floor(Math.random() * charsLength)];
 			}
-		} while (false);
+		} while (isRepeated);
 
 		return tiny;
 	};
@@ -31,7 +32,7 @@ function TinyURL (argument) {
 
 	this.get = function(tiny, res) {
 		con.acquire(function (err, con) {
-			con.query("select original from urls where short = ?", tiny, function (err, result) {
+			con.query('select original from urls where short = ?', tiny, function (err, result) {
 				con.release();
 				if(err)
 					res.send({status: 1, message: JSON.stringify(err)});
@@ -43,7 +44,7 @@ function TinyURL (argument) {
 
 	this.redirect = function(tiny, res) {
 		con.acquire(function (err, con) {
-			con.query("select original from urls where short = ?", tiny, function (err, result) {
+			con.query('select original from urls where short = ?', tiny, function (err, result) {
 				con.release();
 				if(err)
 					res.send({status: 1, message: JSON.stringify(err)});
@@ -62,7 +63,7 @@ function TinyURL (argument) {
 			});
 		});
 	};
-	
+
 }
 
 module.exports = new TinyURL();
@@ -73,7 +74,7 @@ module.exports = new TinyURL();
 /*
 	} while (find(tiny).tinyURL);
 
-		
+
 	var find = function (tiny) {
 		con.acquire(function (err, con) {
 			con.query("select original from urls where short = ?", tiny, function (err, result) {

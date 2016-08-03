@@ -16,6 +16,6 @@ module.exports = {
 
 		app.get('/get/:tinyURL', function (req, res) {
 			tinyURL.redirect(req.params.tinyURL, res);
-		})
+		});
 	}
-}
+};

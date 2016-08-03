@@ -1,6 +1,0 @@
-:global(body) {
-    background-color: #cfc;
-}
-:local(.redButton) {
-  background: blue;
-}
